@@ -22,7 +22,7 @@ public class UserAccountBalanceResponseDto {
     // 요금
     private BigDecimal balance;
 
-    // 환 종류
+    // 환 타입
     private CurrencyType currency;
     
 }

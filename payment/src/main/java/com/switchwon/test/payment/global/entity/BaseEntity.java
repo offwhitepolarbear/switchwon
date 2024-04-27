@@ -21,7 +21,6 @@ import lombok.Setter;
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public abstract class BaseEntity {
-    
 
     @Id
     @GeneratedValue(generator = "UUID")

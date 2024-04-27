@@ -24,14 +24,7 @@ public class PaymentEstimateHistory extends BaseEntity{
     private String userId;
     private String merchantId;
     private BigDecimal amount;
+    
     @Enumerated(EnumType.STRING)
     private CurrencyType currency;
-
-    // @Builder
-    // public PaymentEstimateHistory(String userId, String merchantId, BigDecimal amount, CurrencyType currency){
-    //     this.userId = userId;
-    //     this.merchantId = merchantId;
-    //     this.amount = amount;
-    //     this.currency = currency;
-    // }
 }

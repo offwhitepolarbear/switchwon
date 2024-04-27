@@ -28,7 +28,6 @@ public class PaymentServiceTest {
     @Autowired
     private UserAccountService userAccountService;
 
-
     @DisplayName("결제 금액 예상 테스트")
     @Test
     public void testPaymentEstimate(){

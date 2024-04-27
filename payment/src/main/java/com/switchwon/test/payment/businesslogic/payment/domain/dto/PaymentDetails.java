@@ -3,6 +3,7 @@ package com.switchwon.test.payment.businesslogic.payment.domain.dto;
 import com.switchwon.test.payment.global.constants.RegexErrorMessagesPayment;
 import com.switchwon.test.payment.global.constants.RegexPatternPayment;
 
+import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
@@ -16,6 +17,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Embeddable
 public class PaymentDetails {
     
     @NotNull
