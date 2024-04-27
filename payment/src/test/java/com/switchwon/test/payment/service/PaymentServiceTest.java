@@ -1,6 +1,7 @@
 package com.switchwon.test.payment.service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -39,19 +40,24 @@ public class PaymentServiceTest {
         // 테스트할 기능
         PaymentEstimateResponseDto paymentEstimateResponseDto = paymentService.getPaymentEstimate(paymentEstimateRequestDto);
 
+        // 절삭된 금액
         BigDecimal fee = paymentEstimateResponseDto.getFees();
         BigDecimal totalAmount = paymentEstimateResponseDto.getEstimatedTotal();
         CurrencyType currency = paymentEstimateResponseDto.getCurrency();
        
-        // 수수료 변경시 확인 필요
+        // 수수료 변경시 수정 필요
         BigDecimal feeRate = BigDecimal.valueOf(0.03);
         BigDecimal totalRate = BigDecimal.valueOf(1.03);
 
+        int scale = 0;
 
+        if (currency.equals(CurrencyType.USD)){
+            scale = 2;
+        }
         // 결과 확인 
         Assertions.assertThat(paymentEstimateRequestDto.getCurrency()).isEqualTo(currency);
-        Assertions.assertThat(paymentEstimateRequestDto.getAmount().multiply(feeRate)).isEqualTo(fee);
-        Assertions.assertThat(paymentEstimateRequestDto.getAmount().multiply(totalRate)).isEqualTo(totalAmount);
+        Assertions.assertThat(paymentEstimateRequestDto.getAmount().multiply(feeRate).setScale(scale, RoundingMode.DOWN)).isEqualTo(fee);
+        Assertions.assertThat(paymentEstimateRequestDto.getAmount().multiply(totalRate).setScale(scale, RoundingMode.DOWN)).isEqualTo(totalAmount);
     }
 
     // 더미 요청 생성
