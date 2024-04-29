@@ -106,6 +106,7 @@ public class PaymentServiceImpl implements PaymentService{
                                                                     .build();
         } catch(Exception e){
             savePaymentHistoryFailure(paymentHistory, e.toString());
+            throw new RuntimeException(BusinessLogicErrorMessagePayment.paymentFailed);
         }
         
         return paymentApprovalResponseDto;
@@ -268,5 +269,3 @@ public class PaymentServiceImpl implements PaymentService{
     }
 
 }
-
-
